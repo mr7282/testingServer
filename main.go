@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"os/signal"
+	"time"
 
 	"github.com/mr7282/testingServer.git/server"
 	"go.uber.org/zap"
@@ -22,7 +23,8 @@ func main() {
 	} ()
 
 	lg.Info("Server is started.",
-	zap.String("Port", serv.Port))
+	zap.String("Port", serv.Port),
+	zap.Time("date_time", time.Now()))
 
 	stopSig := make(chan os.Signal, 1)
 	signal.Notify(stopSig, os.Interrupt, os.Kill)
